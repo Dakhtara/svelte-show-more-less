@@ -1,11 +1,13 @@
 <script lang="ts">
     import {onMount} from "svelte";
+    import ButtonIcon from "../molecules/ButtonIcon.svelte";
 
     export let showMoreText = "Show more";
     export let showLessText = "Show less";
 
     let isOpen = false;
     let blockShowMore;
+    let arrowIcon: string = 'arrow-down';
 
     onMount(() => {
         handleBlockChange();
@@ -18,8 +20,10 @@
     const handleBlockChange = (): void => {
         if (isOpen) {
             blockShowMore.style.maxHeight = blockShowMore.scrollHeight + `px`;
+            arrowIcon = "arrow-up";
         } else {
             blockShowMore.style.maxHeight = "100px";
+            arrowIcon = "arrow-down";
         }
     }
 
@@ -31,9 +35,9 @@
 </div>
 
 <div class="flex items-center justify-between">
-    <hr class="bg-black w-full">
-    <button on:click="{onClick}" class="px-2 py-1  w-full rounded">
+    <hr class="w-full bg-black">
+    <ButtonIcon click="{onClick}" class="w-full" icon="{arrowIcon}">
         {#if isOpen }{showLessText}{:else}{showMoreText}{/if}
-    </button>
+    </ButtonIcon>
     <hr class="w-full bg-black">
 </div>
