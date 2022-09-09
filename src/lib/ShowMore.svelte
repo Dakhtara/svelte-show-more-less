@@ -1,8 +1,8 @@
 <script lang="ts">
     import {onMount} from "svelte";
 
-    let showMoreText = "Show more";
-    let showLessText = "Show less";
+    export let showMoreText = "Show more";
+    export let showLessText = "Show less";
 
     let isOpen = false;
     let blockShowMore;
